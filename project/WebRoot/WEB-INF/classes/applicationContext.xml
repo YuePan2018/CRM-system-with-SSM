@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- load jdbc.properties of dataSource -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!-- create DataSource with dbcp for SqlSessionFactory-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="maxActive" value="10"/>
+		<property name="maxIdle" value="5"/>
+	</bean>
+	
+	<!-- create SqlSessionFactory of MyBatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- connect to dataSource-->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- connect to mybatis statements-->
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
+	</bean>
+		
+	<!-- create implementation class，which is injected with SqlSessionFactory -->
+	<bean id="customerMapper" class="com.crm.dao.impl.CustomerMapperImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	
+	
+</beans>
