@@ -4,8 +4,8 @@
 1. DataBase: MySql<br>
 database name: ssm <br>
 username: root <br>
-password: admin
-
+password: admin <br>
+<br>
 import table ssm.sql
 
 2. MyBatis + Spring: 
