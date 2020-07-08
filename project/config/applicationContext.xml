@@ -34,12 +34,9 @@
 		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 	</bean>
 		
-	<!-- set mapper: associate spring with Factory and Mapper-->
-	<bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<!-- associate with java mapper interface -->
-		<property name="mapperInterface" value="com.crm.dao.CustomerMapper"/>
-		<!-- associate with SqlSessionFactory -->
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<!-- scan all mapper interfaces-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.crm.dao"/>
 	</bean>
-	
+			
 </beans>

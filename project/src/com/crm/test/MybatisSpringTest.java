@@ -16,7 +16,7 @@ public class MybatisSpringTest {
 		CustomerMapper customerMapper = (CustomerMapper)ac.getBean("customerMapper");
 		//3. set argument object
 		Customer customer = new Customer();
-		customer.setName("Chen");
+		customer.setName("Feng");
 		customer.setGender("M");
 		customer.setTelephone("020-666666");
 		customer.setAddress("GuangZhou");
