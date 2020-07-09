@@ -38,5 +38,15 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.crm.dao"/>
 	</bean>
+	
+	<!-- open annotation of all classes in base-package -->
+	<context:component-scan base-package="com.crm"/>
+	
+	<!-- transaction manager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean> 
+	<!-- open annotation of transaction manager -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>	
 			
 </beans>
