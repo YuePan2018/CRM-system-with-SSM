@@ -30,11 +30,11 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- connect to dataSource-->
 		<property name="dataSource" ref="dataSource"/>
-		<!-- associate with mybatis statements-->
+		<!-- associate with mybatis .xml statements-->
 		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 	</bean>
 		
-	<!-- scan all mapper interfaces-->
+	<!-- scan all java mapper interfaces-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.crm.dao"/>
 	</bean>

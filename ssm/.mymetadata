@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="transaction"
+  name="ssm"
   id="myeclipse.1593102169969"
-  context-root="/01.mybatis"
+  context-root="/ssm"
   j2ee-spec="5.0"
-  archive="transaction.war">
+  archive="ssm.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>

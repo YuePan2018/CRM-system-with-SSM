@@ -8,11 +8,8 @@ password: admin <br><br>
 import table ssm.sql<br>
 table name: t_customer
 
-2. MyBatis + Spring:<br>
-Run MybatisSpringTest.java, insert a row in database<br><br>
-MyBatis configuration is set by scanning all interfaces in ./mapper<br>
-Spring is set by annotation, and transaction manager is set up.
-
-3. SpringMVC<br>
-Deploy project in TomCat and run server<br>
-open a url in a browser: http://localhost:8080/spring-springmvc-mybatis/customer/test.action
+2. Test: MyBatis + Spring + SpringMVC:<br>
+Deploy the project in TomCat and run server<br>
+Open a url in a browser: http://localhost:8080/ssm/customer/input.action<br>
+In this web page, input customer properties and click "save".<br>
+If insert a customer into database successfully, browser will jump to a success page.

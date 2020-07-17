@@ -16,6 +16,5 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerMapper customerMapper;
 	public void insertCustomer(Customer customer) {
 		customerMapper.insertCustomer(customer);
-		customerMapper.insertCustomer(customer);
 	}
 }
