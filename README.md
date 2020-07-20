@@ -13,3 +13,11 @@ Deploy the project in TomCat and run server<br>
 Open a url in a browser: http://localhost:8080/ssm/customer/input.action<br>
 In this web page, input customer properties and click "save".<br>
 If insert a customer into database successfully, browser will jump to a success page.
+
+3.EasyUI<br>
+This EasyUI project is in "/WebRoot/easyui".<br>
+I didn't write it, and it is from a online course: "https://www.udemy.com/course/springmvc-ssm/"<br>
+I just write jsp codes to implement the functions of eayui project.
+
+Open /WebRoot/index.jsp in a browser, the web is a CRM system user interface.
+When clicking "客户管理", web will call "customer_manage.jsp" and display customer table in database
