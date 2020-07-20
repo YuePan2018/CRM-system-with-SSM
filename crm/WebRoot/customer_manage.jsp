@@ -19,17 +19,56 @@
 
   </head>
   
+  <!-- when this jsp is loaded, a tool bar and a table(filled by datagrid of easyui) will show up-->
+  <!-- when clicking tool bar, a window will pop up to edit table-->
   <body>
-	<table id="list"></table>	
-	<!-- 用java script 展示datagrid -->
+	<table id="list"></table>
+	
+	<!-- 1. a toolbar of easyUI to create, update and delete -->
+	<div id="tb">
+		<!-- <a> is hyperlink tag, -->
+		<!-- data-option determines the appearance of button -->
+		<a id="addBtn" href="#" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true">添加</a>
+		<a id="editBtn" href="#" class="easyui-linkbutton"
+		data-options="iconCls:'icon-edit',plain:true">修改</a>
+		<a id="deleteBtn" href="#" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true">删除</a>
+	</div>
+	
+	<!-- 2. a window of eaysUI to edit customer-->
+	<!-- "closed:true" config: window not pop up at first-->
+	<div id="win" class="easyui-window" title="客户数据编辑"
+		style="width:500px;height:300px"
+		data-options="iconCls:'icon-save',modal:true,closed:true">
+		<!-- input as a form -->
+		<form method="post">
+			<!-- validatebox is a class which verifies required texts -->
+			客户姓名：<input type="text" name="name" class="easyui-validatebox"
+			data-options="required:true"/><br/>
+			客户性别：
+			<input type="radio" name="gender" value="男"/>男
+			<input type="radio" name="gender" value="女"/>女
+			<br/>
+			客户手机：<input type="text" name="telephone" class="easyui-validatebox"
+			data-options="required:true"/><br/>
+			客户住址：<input type="text" name="address" class="easyui-validatebox"
+			data-options="required:true"/><br/>
+			<a id="saveBtn" href="#" class="easyui-linkbutton"
+			data-options="iconCls:'icon-save'">保存</a>
+		</form>
+	</div>
+	
+	<!-- 3.a function of filling table and clicking button-->
 	<script type="text/javascript">
 		$(function(){
+			// 3.1 datagrid to fill the table "list"
 			$("#list").datagrid({
-				//url:后台数据查询的地址
+				//url:back-end data query path
 				url:"customer/list.action",
-				//columns：填充的列数据,是一个二维数组,每个一维数组都是一列
-				//field:后台对象的属性
-				//tille:列标题
+				//columns：format of returned data
+				//field:name of data
+				//tille:column title
 				columns:[[
 				{
 					field:"id",
@@ -48,16 +87,22 @@
 					width:200
 				},
 				{
-				field:"telephone",
-				title:"客户手机",
-				width:200
+					field:"telephone",
+					title:"客户手机",
+					width:200
 				},
 				{
-				field:"address",
-				title:"客户住址",
-				width:200
+					field:"address",
+					title:"客户住址",
+					width:200
 				}
-				]]
+				]],
+				// toolbar of easyUI
+				toolbar:"#tb"
+			});
+			// 3.2 click "addBtn" to "open" the window "win"
+			$("#addBtn").click(function(){
+				$("#win").window("open");
 			});
 		});
 	</script>
