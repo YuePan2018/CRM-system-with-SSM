@@ -42,7 +42,7 @@
 		style="width:500px;height:300px"
 		data-options="iconCls:'icon-save',modal:true,closed:true">
 		<!-- input as a form -->
-		<form method="post">
+		<form id="editForm" method="post">
 			<!-- validatebox is a class which verifies required texts -->
 			客户姓名：<input type="text" name="name" class="easyui-validatebox"
 			data-options="required:true"/><br/>
@@ -103,6 +103,35 @@
 			// 3.2 click "addBtn" to "open" the window "win"
 			$("#addBtn").click(function(){
 				$("#win").window("open");
+			});
+			// 3.2 click "saveBtn" to save the the window "win" to back-end
+			$("#saveBtn").click(function(){
+				$("#editForm").form("submit",{
+					//url
+					url:"customer/save.action",
+					// 3.2.1 onSubmit: call onsSumit before submitting form
+					onSubmit:function(){
+						// if validate function is true, submit form
+						return $("#editForm").form("validate");
+					},
+					// 3.2.2 success: call success after submitting form
+					success:function(data){ 
+						//data: char[] data returned from server (Controller.java)
+						//transform char[] to an Object
+						data = eval("("+data+")");
+						// print the status of saving
+						if(data.success){
+							// close window and refresh datagrid
+							$("#win").window("close");
+							$("#list").datagrid("reload");
+							// print success
+							$.messager.alert("提示","保存成功","info");
+						}else{
+							// print fail 
+							$.messager.alert("提示","保存失败："+data.msg,"error");
+						}
+					}
+				});
 			});
 		});
 	</script>

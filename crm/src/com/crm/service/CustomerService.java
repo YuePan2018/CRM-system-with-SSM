@@ -6,4 +6,6 @@ import com.crm.domain.Customer;
 public interface CustomerService {
 	// select all data
 	public List<Customer> selectAll();
+	// insert a customer
+	public void insert(Customer customer);
 }

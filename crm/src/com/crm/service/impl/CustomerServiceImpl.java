@@ -21,4 +21,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Customer> selectAll(){
 		return customerMapper.selectAll();
 	}
+	// insert a customer
+	public void insert(Customer customer) {
+		customerMapper.insert(customer);
+	}
 }

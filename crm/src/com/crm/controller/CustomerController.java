@@ -1,6 +1,8 @@
 package com.crm.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -18,6 +20,8 @@ public class CustomerController {
 	// inject a CustomerService object
 	@Resource
 	private CustomerService customerService;
+	//map is the data structure of return value
+	private Map<String,Object> result = new HashMap<String,Object>();
 	/*
 		Returned data is in a json format,
 		because datagrid in EasyUI requires json.
@@ -28,5 +32,19 @@ public class CustomerController {
 	public List<Customer> list(){
 		List<Customer> list = customerService.selectAll();
 		return list;
+	}
+	
+	@RequestMapping("/save")
+	@ResponseBody
+	public Map<String,Object> save(Customer customer){
+		try {
+			customerService.insert(customer);
+			result.put("success", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("success", false);
+			result.put("msg", e.getMessage());
+		}
+		return result;
 	}
 }

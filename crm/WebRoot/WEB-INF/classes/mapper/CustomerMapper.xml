@@ -9,4 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id,NAME,gender,telephone,address
 		from ssm.t_customer
 	</select>
+	
+	<!-- 添加客户-->
+	<insert id="insert" parameterType="com.crm.domain.Customer">
+		INSERT INTO ssm.t_customer
+		(NAME, gender, telephone, address)
+		VALUES (#{name},#{gender},#{telephone}, #{address})
+	</insert>
 </mapper>
