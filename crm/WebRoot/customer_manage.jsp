@@ -20,7 +20,7 @@
   </head>
   
   <!-- when this jsp is loaded, a tool bar and a table(filled by datagrid of easyui) will show up-->
-  <!-- when clicking tool bar, a window will pop up to edit table-->
+  <!-- when clicking the add button, a window will pop up for inserting into the table-->
   <body>
 	<table id="list"></table>
 	
@@ -36,7 +36,7 @@
 		data-options="iconCls:'icon-remove',plain:true">删除</a>
 	</div>
 	
-	<!-- 2. a window of eaysUI to edit customer-->
+	<!-- 2. a window of eaysUI to add/edit customer-->
 	<!-- "closed:true" config: window not pop up at first-->
 	<div id="win" class="easyui-window" title="客户数据编辑"
 		style="width:500px;height:300px"
@@ -100,11 +100,14 @@
 				// toolbar of easyUI
 				toolbar:"#tb"
 			});
-			// 3.2 click "addBtn" to "open" the window "win"
+			
+			// 3.2 click "addBtn" to open the window
 			$("#addBtn").click(function(){
+				$("editForm").form("clear"); // clear former data in the window
 				$("#win").window("open");
 			});
-			// 3.2 click "saveBtn" to save the the window "win" to back-end
+			
+			// 3.3 click "saveBtn" to save the the window to back-end
 			$("#saveBtn").click(function(){
 				$("#editForm").form("submit",{
 					//url
@@ -133,6 +136,20 @@
 					}
 				});
 			});
+			
+			// 3.4 check a row and click editBtn to open the window
+			$("#editBtn").click(function(){
+				// requirements: must check a row before before edit
+				var rows = $("#list").datagrid("getSelections");
+				if(rows.length!=1){
+					$.messager.alert("提示","修改操作只能选择一行","warning");
+					return;
+				}
+				// display selected customer
+				// $("#editForm").form("load","customer/findById.action?id="+rows[0].id);
+				// open a window
+				$("#win").window("open");
+			});			
 		});
 	</script>
   </body>
