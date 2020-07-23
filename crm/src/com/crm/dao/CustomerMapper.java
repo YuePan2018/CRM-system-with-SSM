@@ -12,4 +12,6 @@ public interface CustomerMapper {
 	public void update(Customer customer);
 	// find by id
 	public Customer findById(Integer id);
+	// delete
+	public void delete(Integer[] id);
 }

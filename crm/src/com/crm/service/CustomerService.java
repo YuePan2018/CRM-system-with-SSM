@@ -10,4 +10,6 @@ public interface CustomerService {
 	public void save(Customer customer);
 	// find customer by id
 	public Customer findById(Integer id);
+	// delete customer
+	public void delete(Integer[] id);
 }

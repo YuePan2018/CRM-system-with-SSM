@@ -57,4 +57,19 @@ public class CustomerController {
 		}
 		return result;
 	}
+	// delete
+	@RequestMapping("/delete")
+	@ResponseBody
+	// receive idStr from jsp as Integer[]
+	public Map<String,Object> delete(Integer[] id){
+		try {
+			customerService.delete(id);
+			result.put("success", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("success", false);
+			result.put("msg", e.getMessage());
+		}
+		return result;
+	}
 }

@@ -15,8 +15,6 @@
 	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 	<link id="themeLink" rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
-
-
   </head>
   
   <!-- when this jsp is loaded, a tool bar and a table(filled by datagrid of easyui) will show up-->
@@ -152,7 +150,38 @@
 				$("#editForm").form("load","customer/findById.action?id="+rows[0].id);
 				// open a window
 				$("#win").window("open");
-			});			
+			});	
+			// 3.5 check rows and click deleteBtn to delete customers
+			$("#deleteBtn").click(function(){
+				var rows =$("#list").datagrid("getSelections");
+				if(rows.length==0){
+					$.messager.alert("提示","删除操作至少选择一行","warning");
+					return;
+				}
+				// confirm deleting data
+				$.messager.confirm("提示","确认删除数据吗?",function(value){
+					if(value){
+						var idStr = "";
+						// traverse all rows to form idStr in a format of "id=1&id=2&id=3"
+						$(rows).each(function(i){
+							idStr+=("id="+rows[i].id+"&");
+						});
+						//remove the last '&'
+						idStr = idStr.substring(0,idStr.length-1);						
+						// send selected id to back-end as idStr
+						$.post("customer/delete.action",idStr,function(data){
+							if(data.success){
+								// refresh datagrid
+								$("#list").datagrid("reload");
+								// print success or fail
+								$.messager.alert("提示","删除成功","info");
+							}else{
+								$.messager.alert("提示","删除失败:"+data.msg,"error");
+							}
+						},"json");
+					}
+				});	
+			});
 		});
 	</script>
   </body>

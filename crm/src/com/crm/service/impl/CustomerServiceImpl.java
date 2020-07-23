@@ -35,4 +35,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer findById(Integer id) {
 		return customerMapper.findById(id);
 	}
+	// delete
+	public void delete(Integer[] id) {
+		customerMapper.delete(id);		
+	}
 }

@@ -35,5 +35,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM ssm.t_customer
 		where id = #{value}
 	</select>
+	
+	<!-- delete in batches -->
+	<delete id="delete" parameterType="Integer[]">
+		DELETE FROM ssm.t_customer		
+		<!-- the "where tag" is same as "id in (1,2,3)" -->
+		<where>
+			id
+			<!-- collection refers to Integer[], and item refers to elements in array -->
+			<foreach collection="array" item="eachID" open="in (" close=")" separator=",">
+				#{eachID}
+			</foreach>
+		</where>
+	</delete>
 
 </mapper>
