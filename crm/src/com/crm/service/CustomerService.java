@@ -6,6 +6,8 @@ import com.crm.domain.Customer;
 public interface CustomerService {
 	// select all data
 	public List<Customer> selectAll();
-	// insert a customer
-	public void insert(Customer customer);
+	// insert or update a customer
+	public void save(Customer customer);
+	// find customer by id
+	public Customer findById(Integer id);
 }

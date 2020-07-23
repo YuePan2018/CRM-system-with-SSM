@@ -21,8 +21,18 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Customer> selectAll(){
 		return customerMapper.selectAll();
 	}
-	// insert a customer
-	public void insert(Customer customer) {
-		customerMapper.insert(customer);
+	// save a customerL insert or edit
+	public void save(Customer customer) {
+		// insert
+		if(customer.getId() == null){
+			customerMapper.insert(customer);
+		// update
+		}else{
+			customerMapper.update(customer);
+		}
+	}
+	// find by id
+	public Customer findById(Integer id) {
+		return customerMapper.findById(id);
 	}
 }

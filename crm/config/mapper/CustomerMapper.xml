@@ -10,10 +10,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from ssm.t_customer
 	</select>
 	
-	<!-- 添加客户-->
+	<!-- insert a customer -->
 	<insert id="insert" parameterType="com.crm.domain.Customer">
 		INSERT INTO ssm.t_customer
 		(NAME, gender, telephone, address)
 		VALUES (#{name},#{gender},#{telephone}, #{address})
 	</insert>
+	
+	<!-- update customer referring to id-->
+	<update id="update" parameterType="com.crm.domain.Customer">
+		UPDATE ssm.t_customer
+		SET
+		NAME = #{name} ,
+		gender = #{gender} ,
+		telephone = #{telephone} ,
+		address = #{address}
+		WHERE
+		id = #{id}
+	</update>
+	
+	<!-- find by id-->
+	<select id="findById" parameterType="int" resultType="com.crm.domain.Customer">
+		SELECT id, NAME, gender, telephone,	address
+		FROM ssm.t_customer
+		where id = #{value}
+	</select>
+
 </mapper>

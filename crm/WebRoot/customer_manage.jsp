@@ -43,6 +43,8 @@
 		data-options="iconCls:'icon-save',modal:true,closed:true">
 		<!-- input as a form -->
 		<form id="editForm" method="post">
+			<!-- hidden id to identify insert and update --!>
+			<input type="hidden" name="id">
 			<!-- validatebox is a class which verifies required texts -->
 			客户姓名：<input type="text" name="name" class="easyui-validatebox"
 			data-options="required:true"/><br/>
@@ -103,14 +105,15 @@
 			
 			// 3.2 click "addBtn" to open the window
 			$("#addBtn").click(function(){
-				$("editForm").form("clear"); // clear former data in the window
+				// clear former data in the form
+				$("#editForm").form("clear"); 
 				$("#win").window("open");
 			});
 			
 			// 3.3 click "saveBtn" to save the the window to back-end
 			$("#saveBtn").click(function(){
 				$("#editForm").form("submit",{
-					//url
+					//this form is submitted to SpringMVC with this url
 					url:"customer/save.action",
 					// 3.2.1 onSubmit: call onsSumit before submitting form
 					onSubmit:function(){
@@ -119,7 +122,7 @@
 					},
 					// 3.2.2 success: call success after submitting form
 					success:function(data){ 
-						//data: char[] data returned from server (Controller.java)
+						//data: char[] data is a returned value from server (Controller.java)
 						//transform char[] to an Object
 						data = eval("("+data+")");
 						// print the status of saving
@@ -145,8 +148,8 @@
 					$.messager.alert("提示","修改操作只能选择一行","warning");
 					return;
 				}
-				// display selected customer
-				// $("#editForm").form("load","customer/findById.action?id="+rows[0].id);
+				// load the form with data before update
+				$("#editForm").form("load","customer/findById.action?id="+rows[0].id);
 				// open a window
 				$("#win").window("open");
 			});			

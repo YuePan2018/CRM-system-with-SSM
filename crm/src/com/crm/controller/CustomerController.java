@@ -20,8 +20,6 @@ public class CustomerController {
 	// inject a CustomerService object
 	@Resource
 	private CustomerService customerService;
-	//map is the data structure of return value
-	private Map<String,Object> result = new HashMap<String,Object>();
 	/*
 		Returned data is in a json format,
 		because datagrid in EasyUI requires json.
@@ -34,11 +32,23 @@ public class CustomerController {
 		return list;
 	}
 	
+	// return customer by id
+	@RequestMapping("/findById")
+	@ResponseBody
+	public Customer findById(Integer id){
+		Customer cust = customerService.findById(id);
+		return cust;
+	}
+
+	//result is a return value which contains status and message, and it's a map.
+	private Map<String,Object> result = new HashMap<String,Object>();
+	// save: insert or update
 	@RequestMapping("/save")
 	@ResponseBody
 	public Map<String,Object> save(Customer customer){
+		// the form submitted from web is transformed to a Customer Object
 		try {
-			customerService.insert(customer);
+			customerService.save(customer);
 			result.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();

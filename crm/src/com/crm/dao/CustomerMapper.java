@@ -8,4 +8,8 @@ public interface CustomerMapper {
 	public List<Customer> selectAll();
 	// insert a customer
 	public void insert(Customer customer);
+	// update a customer
+	public void update(Customer customer);
+	// find by id
+	public Customer findById(Integer id);
 }
