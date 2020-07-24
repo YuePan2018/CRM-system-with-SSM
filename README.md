@@ -1,5 +1,5 @@
-# CRM-system-with-SSM
-##### A customer relationship management system done by Spring + Spring MVC + MyBatis
+# a SSM system for customer information CRUD
+##### Spring + Spring MVC + MyBatis + EasyUI(jsp) + MySql
 
 1. DataBase: MySql<br><br>
 database name: ssm <br>
@@ -8,17 +8,15 @@ password: admin <br><br>
 import table ssm.sql<br>
 table name: t_customer
 
-2. Test: MyBatis + Spring + SpringMVC:<br>
-Deploy the project in TomCat and run server<br>
-Open a url in a browser: http://localhost:8080/ssm/customer/input.action<br>
-In this web page, input customer properties and click "save".<br>
-If insert a customer into database successfully, browser will jump to a success page.
-
-3. EasyUI<br>
+2. EasyUI<br>
 This EasyUI project comes from a online course: "https://www.udemy.com/course/springmvc-ssm/"<br>
 I edit the given jsp codes to match my SSM project<br><br>
-3.1 Deploy the project in TomCat and run server<br>
-3.2 Open /WebRoot/index.jsp (eg. http://localhost:8080/crm/index.jsp) in a browser, the web is a CRM page.<br>
-3.3 When clicking "客户管理", web calls "customer_manage.jsp" and display customer table.<br>
-3.4 Click "添加" button to insert a customer,<br>
-After selecting and checking a row, click "修改" button to edit a customer, or click "删除" button to delete a customer.<br>
+steps:<br>
+1. Deploy the project in TomCat and run server<br>
+2. Load /WebRoot/index.jsp (eg. http://localhost:8080/crm/index.jsp) in a browser.<br>
+3. In the web page, click "客户管理" on the left to call /WebRoot/customer_manage.jsp and pop up a customer table.<br>
+4. There is a toor bar above the table and contains 3 buttons: "添加","修改","删除".<br> 
+Click "添加" button to insert the information of a customer.<br>
+After selecting and checking a row, click "修改" button to edit the information of a customer.<br>
+After selecting and checking at leat a row,  click "删除" button to delete the information of customers .
+3. Spring + Spring MVC + MyBatis
