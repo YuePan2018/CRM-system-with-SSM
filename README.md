@@ -12,7 +12,7 @@ table name: t_customer
 This EasyUI project comes from a online course: "https://www.udemy.com/course/springmvc-ssm/"<br>
 I edit the given jsp codes to match my SSM project<br><br>
 steps: 
-* Set up the table in MySql, and do the following to CRUD(create, read, updata and delete)<br>
+* Set up the table in MySql, and do the following steps for customer information CRUD(create, read, updata and delete)<br>
 * Deploy the project in TomCat and run server<br>
 * Load /WebRoot/index.jsp (eg. http://localhost:8080/crm/index.jsp) in a browser.<br>
 * In the web page, click "客户管理" on the left to call /WebRoot/customer_manage.jsp and pop up a customer table.<br>
