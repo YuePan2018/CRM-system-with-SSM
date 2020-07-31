@@ -1,4 +1,4 @@
-# a SSM project for customer information CRUD
+# a SSM project for customer management
 ##### Spring + Spring MVC + MyBatis + EasyUI(jsp) + MySql
 
 1. DataBase: MySql<br><br>
